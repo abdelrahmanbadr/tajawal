@@ -15,8 +15,8 @@ class SearchValidatation extends AbstractValidation
         return [
             'name' => 'string',
             'city' => 'string',
-            'price.from'=>'numeric|required_unless:price.to,',
-            'price.to'=>'numeric|required_unless:price.from,',
+            'price.from'=>'numeric|required_unless:price,',
+            'price.to'=>'numeric|required_unless:price,',
             'date.from' => 'date|before:date.to|required_unless:date.to,',
             'date.to' => 'date|after:date.from||required_unless:date.from,',
             'order.by' => 'string|in:name,price|required_unless:order,',
