@@ -1,0 +1,15 @@
+languages:
+  - php
+engines:
+  phpcodesniffer:
+    enabled: true
+  phpmd:
+    enabled: true
+ratings:
+  paths:
+     - "**.php"
+exclude_paths:
+  - "tests/"
+  - "**.md"
+  - "**.json"
+  - "**.xml"
