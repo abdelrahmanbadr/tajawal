@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use  Tajawal\Business\HotelBusiness;
 use Tajawal\Business\Sort\SortHotels;
+use Tajawal\Validation\SearchValidatation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -18,8 +19,9 @@ class HotelBusinessTest extends TestCase
         Parent::__construct();
         $mock = new MockedData();
         $sort = new SortHotels();
+        $validation = new SearchValidatation();
         $this->request = new Request();
-        $this->business = new HotelBusiness($mock,$sort);   
+        $this->business = new HotelBusiness($mock,$sort,$validation);   
     }
    
     /**

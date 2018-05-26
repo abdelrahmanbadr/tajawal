@@ -5,6 +5,7 @@ use Tajawal\Contracts\IBusiness;
 use Tajawal\Contracts\IDataSource;
 use Tajawal\Contracts\ISort;
 use Illuminate\Support\Collection;
+use Tajawal\Validation\AbstractValidation;
 use Illuminate\Http\Request;
 
 class HotelBusiness implements IBusiness
@@ -21,15 +22,24 @@ class HotelBusiness implements IBusiness
      * @var ISort
      */
     private $sort;
+    /**
+     * @var AbstractValidation
+     */
+    private $validator;
     
-    public function __construct(IDataSource $dataSource, ISort $sort)
+    public function __construct(IDataSource $dataSource, ISort $sort, AbstractValidation $validator)
     {
         $this->dataSource = $dataSource;
         $this->sort = $sort;
+        $this->validator = $validator;
     }
 
     public function search(Request $request): Collection
     {
+        $validator = $this->validator->validateRequest($request);
+        if ($validator->fails()) {
+            throw new \Exception($validator->messages());
+        }
         $this->collection = $this->dataSource->getHotels();
         foreach ($request->all() as $filterName => $value) {
             $decorator = $this->createFilterDecorator($filterName);
