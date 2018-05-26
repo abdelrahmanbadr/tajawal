@@ -23,4 +23,18 @@ class SearchValidatation extends AbstractValidation
             'order.type' => 'string|in:asc,desc',
         ];
     }
+    /**
+     * Error messages
+     * @return array
+     */
+    protected function errorMessages(): array
+    {
+        return [
+            'order.type.in' => 'Order Type Should Be desc or asc only',
+            'order.type.by' => 'Order Type Should Be price or name only',
+            'date.to.required_unless' => 'Date should be an array of from and to only',
+            'date.from.required_unless' => 'Date should be an array of from and to only',
+            'order.by.required_unless' => 'Order should be an array of by and type only',
+        ];
+    }
 }
