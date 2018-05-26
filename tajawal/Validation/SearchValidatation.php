@@ -31,7 +31,7 @@ class SearchValidatation extends AbstractValidation
     {
         return [
             'order.type.in' => 'Order Type Should Be desc or asc only',
-            'order.type.by' => 'Order Type Should Be price or name only',
+            'order.by.in' => 'Order By Should Be price or name only',
             'date.to.required_unless' => 'Date should be an array of from and to only',
             'date.from.required_unless' => 'Date should be an array of from and to only',
             'order.by.required_unless' => 'Order should be an array of by and type only',
